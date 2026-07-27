@@ -1,0 +1,1 @@
+Unicode Text UTF-16 => use 16 bit for each character.

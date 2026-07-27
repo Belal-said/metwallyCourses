@@ -1,0 +1,16 @@
+Modules => it's a way to organize our code.
+
+Separate code that handle something like DB, I can merge them with another code to integrate in building my app.
+
+Any module should have export and import
+- export in module file
+- import in the file i want to use module in
+
+====> Common JS (CJS) => Can not be used in browser.
+      - any code file in node js can be handled as a module
+
+
+Different Parameters
+      - __dirname => Dirctory path that contain the code file.
+      - __filenaem => Our file name.
+      - module = 

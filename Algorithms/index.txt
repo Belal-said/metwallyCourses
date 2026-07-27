@@ -1,0 +1,12 @@
+==> Sort types :-
+1-  Insertion Sort
+2-  Merge Sort
+3-  Quick Sort
+4-  Bubble Sort
+5-  Selection Sort
+6-  Counting Sort
+7-  Shell Sort
+8-  Bucket Sort
+9-  Radix Sort
+10- Heap Sort
+
