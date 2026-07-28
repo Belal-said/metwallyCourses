@@ -1,0 +1,31 @@
+Async:
+      - request something at specific point of time, then receive the response later at another point.
+
+Sync:
+      - request something at specific point of time and expecting the response immediately.
+
+JavaScript is synchronous langauge by nature.
+
+Asynchronous in Node.js is possible via libuv.
+
+Callback:
+      - Preparing a function and calling it when needed.
+
+1- All Sync Code First
+2- Promise Code (Macrotasks)
+3- Timer Code
+      - setTimeout, setInterval
+4- I/O Code
+      - Input and Outputs 
+      - Handle system files and network connection
+5- Check 
+      - setImmediate
+6- Close
+
+- Any Callback must wait till all sync code be executed.
+
+Process.nextTick(  ) => register callback function to be executed later. (Macrotasks)
+
+After executing all sync code, the event loop is started until all queues became empty.
+
+Node.js contain nextTick and promise queues in V8 engine.
