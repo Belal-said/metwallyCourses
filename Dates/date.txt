@@ -1,0 +1,10 @@
+Date - Unix Epoch - ISO 8601
+
+- Date is not primitive data type
+- Date is an object ( let now = new Date(); )
+- Date object has lots of functions and methods
+
+Unix Epoch => a system to present dates
+
+Date and Time                     Unix Epoch value
+1970-01-01 24:00:00               0
