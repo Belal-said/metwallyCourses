@@ -1,0 +1,44 @@
+HTTP = HyperText Transfer Protocol (RFC HTTP)
+
+Journey:- 
+      request >
+      User Agent =============================================== Origin Server
+                                                                  < response
+
+GET /hello.txt HTTP/1.1                                           HTTP/1.1 200 OK
+User-Agent: curl/7.16.3 libcurl/7.16.3 => header                  Date: Mon, 27 Jul 2009 12:28:53 GMT       => header
+Host: www.example.com                  => header                  Server: Apache                            => header
+Accept-Languate: en, ar                => header                  Accept-Range: bytes                       => header
+                                                                  Content-Length: 13                        => header
+                                                                  Content-Type: text/plain                  => header
+
+URL = Uniform Resource Locator
+URI = Unified Resource Identifier 
+
+URI = scheme":"hier-part["?"query]["#"fragment]
+URL = scheme":"hier-part authority path ["?"query] ["#"fragment]
+
+example = https://cloudnativebasecamp.com:80/courses/nodejs?lesson=01#player
+
+scheme = https
+hier-part = //
+authority = cloudnativebasecamp.com:80
+path = /courses/nodejs
+query = ?lesson=01
+fragment = #player
+
+Methods = represent the cause of the request. ( Request Verb )
+      1- GET => for getting a resource or resources
+      2- POST => for creating new resource ( This request method must contain request body )
+      3- Put => For editing a resource
+      4- DELETE => for deleting a resource
+
+
+Response status codes:
+      1xx informational
+      2xx success
+      3xx redirect
+      4xx client error
+      5xx server error
+
+https://datatracker.ietf.org/doc/html/rfc7231#section-6

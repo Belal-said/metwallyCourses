@@ -1,0 +1,36 @@
+OSI = Open System Interconnection. ( has internationl standard ISO/IEC 7498-1 )
+
+Modem = 
+
+Router
+      - Multifunctional device
+      - It is a modem, router and switch in one device
+
+Hub = 
+
+Switch = 
+
+NIC = LAN
+
+Repeater = 
+
+
+OSI Model have 7 logical layers
+      1- Physical functions
+      2- Data Link functions
+      3- Network functions
+      4- Transport functions
+      5- Session functions
+            - Asking operating system for creating network socket (BSD UNIX socket)
+            
+      6- Presentation functions 
+            - As long as the protocol is encrypted, So we need a protocol to do this encryption
+                  - TLS encrypt the http request
+                  - TLS = SSL
+                  - HTTPs = HTTP + TLS
+
+      7- Application functions:
+            - ( Protocols like HTTP and HTTPs)
+            - In this stage
+                  - Hostname is resolved ( convert to the ip associated with domain )
+                  - DNS recursor -> Root nameserver -> TLD nameserver -> Authoritative nameserver
