@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Roboto', serif;
+                font-size: 14px;
+            }
+            .parent {
+                width: 95%;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 1rem;
+                flex-direction: column;
+            }
+            .header, .row {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 48px;
+                border-radius: 0.5rem;
+                gap: 1rem
+            }
+            .header p, .row p{
+                width: 30%;
+                padding: 16px;
+                text-transform: capitalize;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent">
+            <div class="header">
+                <p>name</p>
+                <p>id</p>
+                <p>email</p>
+            </div>
+            {%USER%}
+        </div>
+    </body>
+</html>
