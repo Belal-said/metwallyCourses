@@ -1,0 +1,49 @@
+Uses:
+      - Text Validation
+      - Text Extraction
+
+Regular Expressions are string search algorithm. 
+
+There are two ways for creating a regular expression
+      1- let reg = /pattern/; // regular expression literal
+      2- let reg = new RegExp("pattern", "flags") // regular expression constructor
+
+Classes
+      01- [a-z] = range, [xyz] => Character class => Matches any one of the enclosed characters. [a-zA-Z]
+      02- [^0-9] => Negated character class => Matches anything that is not enclosed in the square brackets
+      03- . => Wildcard => Matches any single character except line terminators: \n, \r, \u2028 or \u2029
+      04- \d => Digit character class => Matches any digit (Arabic numeral). Equivalent to [0-9]
+      05- \D => Non-digit character class => Matches any character that is not a digit (Arabic numeral). Equivalent to [^0-9]
+      06- \w => Word character class => Matches any alphanumeric character from the basic Latin alphabet, including the underscore. Equivalent to [A-Za-z0-9_]
+      07- \W => Non-word character class => Matches any character that is not a word character from the basic Latin alphabet. Equivalent to [^A-Za-z0-9_]
+      08- \s => White space character class => Matches a single white space character, including space, tab, form feed, line feed, and other Unicode spaces
+      09- \S => Non-white space character class => Matches a single character other than white space
+      10- \n => Matches linefeed
+      11- \  => Indicates that the following character should be treated specially, or "escaped"
+
+Quantifier
+      1- x{n}   => Where "n" is a non-negative integer, matches exactly "n" occurrences of the preceding item "x"
+      2- x{n,}  => Where "n" is a non-negative integer, matches at least "n" occurrences of the preceding item "x"
+      3- x{n,m} => Matches at least "n" and at most "m" occurrences of the preceding item "x"
+      4- x+     => Matches the preceding item "x" 1 or more times. Equivalent to {1,}
+      5- x*     => Matches the preceding item "x" 0 or more times
+
+Grouping
+      1- (x)  => Capturing group => Matches x and remembers the match
+      2- (?<Name>x) => Named capturing group => Matches "x" and stores it on the groups property of the returned matches under the name specified by <Name>
+      3- (?:x) => Non-capturing group => Matches "x" but does not remember the match
+
+Flags
+      1- s => Single line => Match new lines
+      2- g => Global matching
+      3- m => Multile line
+
+Input boundary assertions
+      1- ^ => Beginning assertion => Matches the beginning of input
+      2- $ => End assertion => Matches the end of input
+
+Lookahead and lookbehind
+      1- (?= ) => Lookahead
+      2- (?! ) => Negated Lookbehind
+      3- (?<= ) => Lookbehind
+      4- (?<! ) => Negated Lookbehind
