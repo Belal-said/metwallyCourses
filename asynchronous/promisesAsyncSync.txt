@@ -1,0 +1,85 @@
+Promise Constructor:-
+    - let promise = new Promise((res, rej) => {
+        // executor 
+      })
+    - This Constructor returns a promise object.
+    - Returned promise object has internal properties:-
+        - State => "pending" then "fulfilled" when resolve or "rejected" when reject.
+        - Result => udefined then 'value' when resolve or 'error' when reject
+    - The properties state and result of the Promise object are internal. We can’t directly access them.
+    - We can use methods .then/.catch/.finally for that.
+    - Promise object serves as a link between the executor and the consuming functions which will recieve the result or error.
+    - Consuming functions can be registered using the methods .then and .catch
+
+Some info:-
+    - The function passed to new Promise is called the executor.
+    - When new Promise is created, the executor runs automatically.
+    - Its args res and rej are callbacks provided by JS.
+    - Our code is only inside the executor.
+    - When the executor gets a response, it calles one of these callbacks
+        - resolve(value)
+        - reject(error)
+    - The executor should call only one resolve or one reject.
+    - Any state change is final. All further calls are ignored
+
+Consumers:-
+    - then
+        - Syntax => promise.then((result) => alert(result), (error) => alert(error))
+        - First  arg of .then is a function that runs when the promise is resolved or recieves the result.
+        - Second arg of .then is a function that runs when the promise is rejected or recieves the error.
+    - catch
+        - For errors, we can use null as first arg for .then => .then(null, errorHandlingFunction)
+        - We can use .catch(errorHandlingFunction) which is exactly the same.
+        - The call .catch(f) is a complete analog of .then(null, f).
+
+Cleanup
+    - finally
+        - Just like there's a finally clause in a regular try{}catch{}, there's finally in promises.
+        - The call .finally(f) is similar to .then(f, f) in the sense that f runs always.
+        - It runs when the promise is settled: be it resolve or reject.
+        - The idea is to set up a handler for performing finalizing after the previous operations are complete.
+        - Note that .finally(f) isn't exactly an alias of .then(f, f) though.
+
+Differences between finally(f) and then(f, f)
+    - A finally handler has no args, Since we don't know whether the promise is resolved or rejected.
+    - A finally handler "passes through" the result or error to the next suitable handler.
+    - A finally handler is not meant to process a promise result. it is a place to do generic cleanup, no matter waht the outcome was.
+    - A finally handler also shouldn't return anything. If it does, the returned value is silently ignored.
+    - When a finally hanlder throws an error. Then this error goes to the next handler, instead of any previous outcome.
+    - A finally handler doesn’t get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
+    - If a finally handler returns something, it's ignored.
+    - When finally throws an error, then the execution goes to the nearest error handler.
+
+Example: loadScript
+    function loadScript(src, callback) {
+      let script = document.createElement('script');
+      script.src = src;
+    
+      script.onload = () => callback(null, script);
+      script.onerror = () => callback(new Error(`Script load error for ${src}`));
+    
+      document.head.append(script);
+    }
+
+    - let's rewrite using promises
+
+    function loadScript(src){
+        return new Promise((resolve, reject) => {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => resolve(script);
+            script.onerror = () => reject(new Error(`Script load error`));
+
+            document.head.append(script)
+        })
+    }
+
+    - Usage 
+
+    let promise = new Promise("https://..................")
+    promise.then(
+        script => alert(`Script is loaded`);
+        error => alert(`Error here`)
+    )
+
