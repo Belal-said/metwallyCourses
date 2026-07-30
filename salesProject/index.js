@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const { Pool } = require("pg");
 const dns = require("dns");
+const path = require("path");
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 function fillRow(template, user) {
@@ -11,8 +12,11 @@ function fillRow(template, user) {
     return output;
 }
 
-const row = fs.readFileSync("./row-template.html", "utf-8");
-const userOverview = fs.readFileSync("./index.html", "utf-8");
+const row = fs.readFileSync(path.join(__dirname, "row-template.html"), "utf-8");
+const userOverview = fs.readFileSync(
+    path.join(__dirname, "index.html"),
+    "utf-8",
+);
 
 const server = http.createServer(async (req, res) => {
     if (req.url === "/users") {
