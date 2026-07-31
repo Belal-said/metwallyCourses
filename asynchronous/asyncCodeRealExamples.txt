@@ -1,0 +1,31 @@
+getWeatherButton.addEventListener("click", async () => {
+    const city = document.getElementById("city").value;
+    if (city === "") alert("Please enter a city name");
+    const response =  await fetch(/weather?city=${city});
+    const weather =  await response.json();
+
+    document.getElementById("result").innerHTML = `
+        <h2 class="city-name">${weather.city}</h2>
+        <p class="item">${weather.temperature}</p>
+        <p class="item">${weather.conditions}</p>
+    `;
+});
+
+There is a network request inside the function, So it must async So we can await our coming data
+
+Take the value from the input and store it in a variable called city. city = queries.city
+
+Validate if the city variable ( input ) is not empty.
+
+Then sending an HTTP GET request to the desired path, passing the city as a query parameter.
+await here pauses until the server responds. response var holds the raw HTTP response
+
+response body arrive as raw text, .json() parses it into a JS object.
+It's also awaited because reading the body is asynchronous.
+
+------------------------------------------------------------------------------------------
+
+Some questions:-
+    1- What is the mean of ( await here pauses until the server responds) ?
+        - The server we have created.
+    2- What is the whole journey of our requested data ?

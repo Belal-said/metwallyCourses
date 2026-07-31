@@ -83,3 +83,17 @@ Example: loadScript
         error => alert(`Error here`)
     )
 
+Promise Chaining:
+    - The idea is that result is passed through the chain of .then handlers.
+    - When a handler returns a value, it becomes the result of that promise, so the next .then is called with it.
+    - A classic newbi error: technically we can also add many .then to a single promise, This is not chaining.
+    - A handlers, used in .then(handler) may create and return a promise, in that case further handlers wait until it settles, and then get its result.
+    - Returning promises allows us to build chains of asynchronous actions.
+
+Big Example: fetch
+    - Promises are used for network requests in frontend programming.
+    - fetch(url) => This makes a network request to the url and returns a promise.
+    - The promise resolves with a response object when the remote server responds with headers, but before the full response is downloaded
+    - To read the full response, we should call the method response.text():
+        - It returns a promise that resolves when the full text is downloaded from the remote server.
+    - 
