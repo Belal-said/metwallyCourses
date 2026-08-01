@@ -97,3 +97,19 @@ Big Example: fetch
     - To read the full response, we should call the method response.text():
         - It returns a promise that resolves when the full text is downloaded from the remote server.
     - 
+
+Promise API :- 6 static methods in the Promise class.
+    1- Promise.all => When we want many promises to execute in parallel and wait until all of them are ready.
+        - It takes an iterable, an array of promises and returns a new promise.
+        - The new promise resolves when all listed promises are resolved, and the array of their result becomes its result.
+            - Promise.all([
+                new Promise(resolve => setTimeout(() => resolve(1), 3000))
+                new Promise(resolve => setTimeout(() => resolve(2), 2000))
+                new Promise(resolve => setTimeout(() => resolve(3), 1000))
+            ]).then(alert); // [1, 2, 3]
+            - The order of resulting array members is the same as in its source promises.
+            - A common trick is to map an array of job data into an array of promises, an then wrap that into Promise.all.
+            - Promise.all doesn't care who finishes first -- it slots each result into the same position it had in the input array.
+            - The total wait is 3 seconds not 6 seconds. All three timers start immediately and simultaneously.
+            - Promise.all resolves when the slowest one finishes.
+
