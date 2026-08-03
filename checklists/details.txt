@@ -1,0 +1,34 @@
+When the request with '/api/checklists' comes from front end, it hits app.use(checklistsRoutes) in server file.
+
+checklistsRoutes is imported, ( import checklistsRoutes from "./src/modules/checklists/routes/index.js"; )
+
+So checklistsRoutes is considered a variable.
+
+index.js file is the router file for checklists project.
+
+index.js file content =>
+    import { Router } from "express";
+
+    import checklistInstanceRouter from "./instance.routes.js";
+    import checklistsRouter from "./checklists.routes.js";
+
+    const router = Router();
+
+    router.use("/api/checklists/instances", checklistInstanceRouter);
+    router.use("/api/checklists", checklistsRouter);
+
+    export default router;
+
+the request go through router.use("/api/checklists", checklistsRouter) to go to checklistsRouter file.
+
+checklistsRouter is imported, ( import checklistsRouter from "./checklists.routes.js"; )
+Now, checklistsRouter is considered a variable.
+
+defineRoute(router, "/", {
+  get: [...view, listRules, listHandler], // use these middlewares then go to listenHandler
+  post: [...corporate, createRules, createHandler], // use these middleware to go to createHandler
+});
+
+1- GET method
+    - 
+

@@ -9,8 +9,8 @@ const headers = {
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
 };
-
-function decryptPassword(stored, key) {
+function decryptPassword(stored) {
+    let key = "fb5009b1255e2fa0771e40539da11ca0850118e43bc6182cbc3904a335a59e66";
     const [ivHex, dataHex] = stored.split(":");
     const iv = Buffer.from(ivHex, "hex");
     const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
@@ -46,9 +46,11 @@ const server = http.createServer(async (req, res) => {
             console.log(user);
 
             if (password === decryptPassword(user.password)) {
+                
                 res.writeHead(200, headers);
                 res.end(
                     JSON.stringify({ message: "Success", email: user.email }),
+                    console.log("Success")
                 );
             } else {
                 res.writeHead(401, headers);

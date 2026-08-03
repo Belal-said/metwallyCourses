@@ -1,0 +1,58 @@
+Cookies => 
+    - They are small strings of data that are stored directly in the browser.
+    - They are a part of the HTTP protocol, defined the RFC 6265 specifications.
+    - They are set by a web server using the response Set-Cookie HTTP header.
+    - The browser automatically adds them to every request to the same domain using the Cookie HTTP header.
+    - One of the most use cases is authentication:
+        1- Upon sign-in, the server uses the Set-Cookie HTTP header in the response to set a cookie with a unique "session identifier".
+        2- Next time the request is sent to the same domain, the browser sends the cookie over the net using the Cookie HTTP header.
+        3- So the server knows who made the request.
+    - We can access cookies from the browser using document.cookie property.
+        - The value document.cookie consists of name=value paris, delimited by ;. Each one is a separat cookie.
+        - To find a particular cookie, we can split document.cookie by ; and then find the right name.
+        - We can use either a regular expression or array functions to do that.
+
+Writing to document.cookie =>
+    - We can write to document.cookie. But it's not a data property,  it's an accessor (getter/setter)
+    - A write operation to document.cookie updates only the cookie mentioned in it and doesn't touch other cookies.
+    - For instance, document.cookie = "user=John"; // This updates only cookie named 'user'
+    - The document.cookie operation does not overwrite all cookies. It only sets the mentioned cookie user.
+    - Name and value can have any characters. To keep the valid formatting, they should be escaped using a built-in encodeURIComponent function.
+    - There are some limitations
+        - You can only set/update a single cookie at a time using document.cookie.
+        - The name=value pair, after encodeURIComponent, should not exceed 4KB. So we can't store anything huge in a cookie.
+        - The total number of cookies per domain is limited to around 20+, The exact limit depends on the browser.
+    - Cookies have several attributes, many of which are important and should be set.
+    - The attributes are listed after key=value, delimited by ;
+        -  document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
+
+Domain =>
+    - domain = site.com
+    - A domain defines where the cookie is accessible. There are limitations. We can't set any domain.
+    - There's no way to let a cookie be accessible from another 2nd-level domain, so other.com will never receive a cookie set at site.com
+    - It's a safety restriction to allow us to store sensitive data in cookies that should be available only on one site.
+    - By default, a cookie is accessible only at the domain that set it.
+    - Note that a cookie is not shared with a subdomain, such as forum.site.com
+    - It is possible to allow subdomains to get a cookie set at site.com
+        - For that to happen: we should explicity set the domain attribute to the root domain ( domain=site.com ). Then all subdomains will see such a cookie.
+        - The domain attribute allows to make a cookie accessible at subdomains
+
+Path => 
+    - path = /mypath
+    - The URL path prefix must be absolute. It makes the cookie accessible for pages under the path. By default, it's the current path.
+    - If a cookie is set with path = /admin
+        - It will be visible on pages /admin and /admin/something.
+        - It will not be visible on page /home, /home/something or /.
+    - Usually we should set path to the root path = / to make the cookie accessible from all website pages. 
+    - If this attribute is not set, the default is calculated using ( this ) method.
+
+Expires, max-age =>
+    - If a cookie doesn't have one of these attributes, it disappears when the browser/tab is closed. Such cookie are called "session cookie"
+    - To let cookies survive a browser close, we can set either the expires or max-age attribute. max-age has precedence if both are set.
+    - Like expites=Tue, 19 Jun 2038 03:14:07 GMT
+    - The cookie expiration date defines the time when the browser will automatically delete it.
+    - The date must be exactly in this format, in the GMT timezone. 
+    - If we set expires to a data in the past, the cookie is deleted.
+    - The max-age is an alternative expires and specifies the cookie's expiration in seconds from the current moment.
+    - If set to zero or a negative value, the cookie is deleted.
+
