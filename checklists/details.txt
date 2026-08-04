@@ -30,5 +30,15 @@ defineRoute(router, "/", {
 });
 
 1- GET method
-    - 
+    - GET method have two middlewares then the handler 
+        - Middlewares
+            1- ...view => Spread operator, more than one middleware. // const view = dashboardRoute('checklists', {permisssions: [PERMISSIONS.CHECKLISTS_VIEW]})
+                - view variable here is an array since dashboardRoute function returns an array.
+                - export function dashboardRoute(slug, authOptions = {}) {
+                return [requireAuth(authOptions), requireDashboardAccess(slug)];
+                }
+                - Now dashboardRoute function returns an array. 
+                - dashboardRoute function uses two other functions requireAuth and requireDashboardAccess.
+                    1- requireAuth take authOptions as a parameter like {permisssions: [PERMISSIONS.CHECKLISTS_VIEW]}
+                    2- requireDashboardAccess takes the slug parameter like 'checklists'
 

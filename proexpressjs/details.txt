@@ -1,0 +1,46 @@
+Express.js is a web framework based on the core Node.js http module and Connect components.
+
+Those components are called middleware ( configuration over convention ), Almost every thing in express is a middleware.
+( configuration over convention ) => Express gives you the building blocks, and you decide how to assemble them
+                                  => Developers are free to pick whatever libraries they need for a particular project.
+
+Express provides ways to reuse code elegantly and provides a model-view-controller ( MVC ).
+    - The model ( M ) part needs to be supplied by and additional database-driver library
+
+Chapter one => 
+    - How Express.js Works
+    - Express.js installation
+    - Express.js generator installation
+
+1- How Express.js works =>
+    - Express.js is a node package manager ( NPM or npm ) module that is a dependency to your application.
+    - Every project that is built with/on express.js needs to have the framework's source files in the local node_modules folder.
+    - Your server.js file
+        1- Include Third-party dependencies. => const express = require('express');
+        2- Instantiations of express.js object and other. => const app = express();
+        3- Connecting your databalse.
+        4- Configuring express.js app settings.
+            - => app.set('view engine', 'jade');
+            - => app.set('port', process.env.PORT || 3000); if port is not defined, use port = 3000
+        5- Defining middleware. 
+            - Middleware is a special function that allows for better code organization and reuse.
+            - They can be packaged as third-party mdoules or we can write our custom middleware.
+            - In both cases the syntax is app.use();
+            - => app.use( bodyParser.json());
+        6- Defining routes
+            - Routes can be either good old web pages or REST API endpoints. In both we use app.VERB(), where VERB is the HTTP method.
+            - We can define home page (root) routes as 
+                - app.get('/', renderHomePage)
+        7- Starting the app
+            - After everything is configured, we can boot up the server with server.listen(portNumber).
+            - Server is core http server object created with the app object.
+                - const server = http.createServer(app)
+                
+When an express.js app is running => 
+    - It listens to requests.
+    - Each request is processed according to a defined chain of middleware and routes, starting from the top and proceeding to the bottom.
+    - This aspect is important because it allows you to control the execution flow.
+
+Generator commands => 
+    - 
+
