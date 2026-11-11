@@ -1,1 +1,0 @@
-// Search in sorted items only.
